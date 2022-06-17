@@ -52,5 +52,15 @@ namespace ElectronicStoreApp
             }
 
         }
+
+        private void Exit_btn_TextChanged(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

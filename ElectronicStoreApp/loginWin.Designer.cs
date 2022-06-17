@@ -34,12 +34,8 @@ namespace ElectronicStoreApp
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.login_btn = new System.Windows.Forms.Button();
-            this.Exit_btn = new System.Windows.Forms.TextBox();
-            this.ClearFields_btn = new System.Windows.Forms.TextBox();
             this.txtBoxUsername = new System.Windows.Forms.TextBox();
             this.txtBoxPassword = new System.Windows.Forms.TextBox();
             this.Sign_in_btn = new System.Windows.Forms.Button();
@@ -48,6 +44,7 @@ namespace ElectronicStoreApp
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.commpany_logo_img)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -76,23 +73,11 @@ namespace ElectronicStoreApp
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
-            resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Name = "panel1";
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Black;
-            resources.ApplyResources(this.panel3, "panel3");
-            this.panel3.Name = "panel3";
             // 
             // login_btn
             // 
@@ -102,17 +87,6 @@ namespace ElectronicStoreApp
             this.login_btn.Name = "login_btn";
             this.login_btn.UseVisualStyleBackColor = false;
             this.login_btn.Click += new System.EventHandler(this.login_btn_Click);
-            // 
-            // Exit_btn
-            // 
-            resources.ApplyResources(this.Exit_btn, "Exit_btn");
-            this.Exit_btn.Name = "Exit_btn";
-            // 
-            // ClearFields_btn
-            // 
-            resources.ApplyResources(this.ClearFields_btn, "ClearFields_btn");
-            this.ClearFields_btn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.ClearFields_btn.Name = "ClearFields_btn";
             // 
             // txtBoxUsername
             // 
@@ -162,11 +136,20 @@ namespace ElectronicStoreApp
             resources.ApplyResources(this.panel7, "panel7");
             this.panel7.Name = "panel7";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // loginWin
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
@@ -175,12 +158,8 @@ namespace ElectronicStoreApp
             this.Controls.Add(this.Sign_in_btn);
             this.Controls.Add(this.txtBoxPassword);
             this.Controls.Add(this.txtBoxUsername);
-            this.Controls.Add(this.ClearFields_btn);
-            this.Controls.Add(this.Exit_btn);
             this.Controls.Add(this.login_btn);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
@@ -202,12 +181,8 @@ namespace ElectronicStoreApp
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button login_btn;
-        private System.Windows.Forms.TextBox Exit_btn;
-        private System.Windows.Forms.TextBox ClearFields_btn;
         private System.Windows.Forms.TextBox txtBoxUsername;
         private System.Windows.Forms.TextBox txtBoxPassword;
         private System.Windows.Forms.Button Sign_in_btn;
@@ -216,6 +191,7 @@ namespace ElectronicStoreApp
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button button1;
     }
 }
 
