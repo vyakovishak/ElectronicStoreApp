@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Runtime.InteropServices;
 namespace ElectronicStoreApp
 {
     public partial class loginWin : Form
@@ -16,29 +16,40 @@ namespace ElectronicStoreApp
         {
             InitializeComponent();
         }
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
 
-        private void label3_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            RegistrationMenuWin RMW = new RegistrationMenuWin();
+            {
+                RMW.ShowDialog();
+            }
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void loginWin_MouseDown(object sender, MouseEventArgs e)
         {
-
+            ReleaseCapture();
+            SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void login_btn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
+            DBConnection dbService = new DBConnection();
+            string clientUsernameInput = txtBoxUsername.Text;
+            string clientPasswordInput = txtBoxPassword.Text;
+            bool quearyStatus =  dbService.Login(clientUsernameInput,  clientPasswordInput);
+           if (quearyStatus)
+            {
+                this.Hide();
+                MainMenu MM = new MainMenu();
+                MM.Show();
+            }
 
         }
     }
