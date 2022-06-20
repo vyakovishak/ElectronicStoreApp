@@ -2206,7 +2206,7 @@
 </value>
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 279</value>
+    <value>98, 308</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 31</value>
@@ -2401,7 +2401,7 @@
 </value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 353</value>
+    <value>100, 369</value>
   </data>
   <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 27</value>
@@ -2449,10 +2449,10 @@
     <value>Broadway, 10pt, style=Bold</value>
   </data>
   <data name="login_btn.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 423</value>
+    <value>99, 423</value>
   </data>
   <data name="login_btn.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 31</value>
+    <value>208, 31</value>
   </data>
   <data name="login_btn.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -2473,10 +2473,10 @@
     <value>9</value>
   </data>
   <data name="txtBoxUsername.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 316</value>
+    <value>161, 316</value>
   </data>
   <data name="txtBoxUsername.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 23</value>
+    <value>147, 23</value>
   </data>
   <data name="txtBoxUsername.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -2494,13 +2494,13 @@
     <value>8</value>
   </data>
   <data name="txtBoxPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 386</value>
+    <value>161, 373</value>
   </data>
   <data name="txtBoxPassword.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
   </data>
   <data name="txtBoxPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 23</value>
+    <value>146, 23</value>
   </data>
   <data name="txtBoxPassword.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>

@@ -13,13 +13,13 @@ namespace ElectronicStoreApp
         SqlDataAdapter myadapter;
         SqlCommand mycommand;
         SqlConnection conn;
-        SqlTransaction mytxn;
+        
 
         public void Disconnect()
         {
             conn.Close();
         }
-        public bool ConnectToDatabase()
+        public bool ConnectToCustumerDatabase()
         {
             try
             {
@@ -47,7 +47,7 @@ namespace ElectronicStoreApp
         public bool Register(string FirstName,string LastName, string Username, string Password, 
                              string Address,  string State,    string Zip)
         {
-            bool dbStatus = ConnectToDatabase();
+            bool dbStatus = ConnectToCustumerDatabase();
             if (dbStatus == true)
             {
                 
@@ -75,7 +75,7 @@ namespace ElectronicStoreApp
         
         public bool Login(string Username, string Password)
         {
-            bool dbStatus = ConnectToDatabase();
+            bool dbStatus = ConnectToCustumerDatabase();
             if (dbStatus == true)
             {
                 SqlCommand createUserCD = new SqlCommand();
@@ -93,8 +93,6 @@ namespace ElectronicStoreApp
                     MessageBox.Show("Wrong password or username!");
                     return false;
                 }
-                
-                
             }
             else
             {
