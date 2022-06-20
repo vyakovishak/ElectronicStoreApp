@@ -3,16 +3,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>StoreDB_V2</Name>
+    <Name>StoreDB</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{19fb35be-dc3f-4012-96f9-77b08cca4443}</ProjectGuid>
+    <ProjectGuid>{d233a0f7-693e-4c88-a1ad-83e3a6d382f0}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>StoreDB_V2</RootNamespace>
-    <AssemblyName>StoreDB_V2</AssemblyName>
+    <RootNamespace>StoreDB</RootNamespace>
+    <AssemblyName>StoreDB</AssemblyName>
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -120,11 +120,10 @@
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Customer.sql" />
-    <Build Include="dbo\Tables\TVs.sql" />
-    <Build Include="dbo\Tables\HomeAudio.sql" />
-    <Build Include="dbo\Tables\HeadPhones.sql" />
+    <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
   </ItemGroup>
 </Project>
