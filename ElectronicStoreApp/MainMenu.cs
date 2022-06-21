@@ -19,34 +19,39 @@ namespace ElectronicStoreApp
             InitializeComponent();
         }
 
-        private bool Computer_btn_isCollapsed;
-        private bool MyAccount_btn_isCollapsed;
-        private bool Audio_btn_isCollapsed;
-        private bool Tablets_btn_isCollapsed;
-        private bool TVs_btn_isCollapsed;
+        private bool Computer_btn_isCollapsed = true;
+        private bool MyAccount_btn_isCollapsed = true;
+        private bool Audio_btn_isCollapsed = true;
+        private bool Tablets_btn_isCollapsed = true;
+        private bool TVs_btn_isCollapsed = true;
 
         public void show_hide_menu(Panel mainPanel, Button button, string tabName)
         {
 
             if (tabName == "Computers")
             {
+                
                 if (Computer_btn_isCollapsed)
                 {
                     button.Image = Resources.arrow_up_small;
                     mainPanel.Height += 10;
+                    
                     if (mainPanel.Size == mainPanel.MaximumSize)
                     {
                         ComputerTimer.Stop();
                         Computer_btn_isCollapsed = false;
-                        return;
+                        
+
                     }
                 }
                 else
                 {
+                   
                     button.Image = Resources.download_icon_bottom_chevron_chevrondowncircle_circle_down_icon_icon_1320185732544666525_16;
                     mainPanel.Height -= 10;
                     if (mainPanel.Size == mainPanel.MinimumSize)
                     {
+                        
                         ComputerTimer.Stop();
                         Computer_btn_isCollapsed = true;
 
@@ -152,6 +157,7 @@ namespace ElectronicStoreApp
             }
 
         }
+
         private void Computer_btn_Click(object sender, EventArgs e)
         {
             ComputerTimer.Start();
@@ -160,12 +166,18 @@ namespace ElectronicStoreApp
 
         private void MyAccount_btn_Click(object sender, EventArgs e)
         {
-            clientObjs
+           
+            Customer obj = loginWin.clientObj;
+            if (obj.adminRights == 1)
+            {
+                Inventory_btn.Visible = true;
+                CustumersData_btn.Visible = true;
+                MyAcountPanel.MaximumSize = new System.Drawing.Size(182, 261);
 
-
+            }
+            
             AccounterTimer.Start();
             show_hide_menu(MyAcountPanel, MyAccount_btn, "Account");
-            
         }
 
         private void Audio_btn_Click(object sender, EventArgs e)
@@ -184,6 +196,16 @@ namespace ElectronicStoreApp
         {
             TVtimer.Start();
             show_hide_menu(TVpanel, TVs_btn, "TV");
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 
