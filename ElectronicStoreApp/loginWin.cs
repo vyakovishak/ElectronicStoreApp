@@ -10,8 +10,10 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 namespace ElectronicStoreApp
 {
+   
     public partial class loginWin : Form
     {
+        
         public loginWin()
         {
             InitializeComponent();
@@ -22,6 +24,7 @@ namespace ElectronicStoreApp
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+        public static Customer clientObj;
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -46,6 +49,7 @@ namespace ElectronicStoreApp
             bool quearyStatus =  dbService.Login(clientUsernameInput,  clientPasswordInput);
            if (quearyStatus)
             {
+                clientObj = new Customer(clientUsernameInput, 1, null);
                 this.Hide();
                 MainMenu MM = new MainMenu();
                 MM.Show();
@@ -61,6 +65,11 @@ namespace ElectronicStoreApp
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void txtBoxUsername_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

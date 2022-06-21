@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace ElectronicStoreApp
 {
     partial class loginWin
@@ -92,6 +94,7 @@ namespace ElectronicStoreApp
             // 
             resources.ApplyResources(this.txtBoxUsername, "txtBoxUsername");
             this.txtBoxUsername.Name = "txtBoxUsername";
+            this.txtBoxUsername.TextChanged += new System.EventHandler(this.txtBoxUsername_TextChanged);
             // 
             // txtBoxPassword
             // 
@@ -193,6 +196,8 @@ namespace ElectronicStoreApp
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button button1;
         private bool dbConnect;
+
+        public TextBox TxtBoxUsername { get => txtBoxUsername; set => txtBoxUsername = value; }
     }
 }
 
