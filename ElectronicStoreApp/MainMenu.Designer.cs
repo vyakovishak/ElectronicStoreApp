@@ -56,8 +56,12 @@ namespace ElectronicStoreApp
             this.SonyTV_btn = new System.Windows.Forms.Button();
             this.SamsungTV_btn = new System.Windows.Forms.Button();
             this.TVs_btn = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.ComputerTimer = new System.Windows.Forms.Timer(this.components);
+            this.AccounterTimer = new System.Windows.Forms.Timer(this.components);
+            this.AudioTimer = new System.Windows.Forms.Timer(this.components);
+            this.TabletsTimer = new System.Windows.Forms.Timer(this.components);
+            this.TVtimer = new System.Windows.Forms.Timer(this.components);
             this.flowLayoutPanel2.SuspendLayout();
             this.MyAcountPanel.SuspendLayout();
             this.ComputerPanel.SuspendLayout();
@@ -77,7 +81,7 @@ namespace ElectronicStoreApp
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1036, 681);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(188, 887);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // MyAcountPanel
@@ -195,7 +199,7 @@ namespace ElectronicStoreApp
             this.ComputerPanel.Controls.Add(this.Desktop_btn);
             this.ComputerPanel.Controls.Add(this.Laptop_btn);
             this.ComputerPanel.Controls.Add(this.Computer_btn);
-            this.ComputerPanel.Location = new System.Drawing.Point(191, 3);
+            this.ComputerPanel.Location = new System.Drawing.Point(3, 52);
             this.ComputerPanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.ComputerPanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.ComputerPanel.Name = "ComputerPanel";
@@ -255,7 +259,7 @@ namespace ElectronicStoreApp
             this.AudioPanel.Controls.Add(this.HomeAduio_btn);
             this.AudioPanel.Controls.Add(this.Headphones_btn);
             this.AudioPanel.Controls.Add(this.Audio_btn);
-            this.AudioPanel.Location = new System.Drawing.Point(379, 3);
+            this.AudioPanel.Location = new System.Drawing.Point(3, 101);
             this.AudioPanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.AudioPanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.AudioPanel.Name = "AudioPanel";
@@ -317,7 +321,7 @@ namespace ElectronicStoreApp
             this.TabletPanel.Controls.Add(this.Samsung_btn);
             this.TabletPanel.Controls.Add(this.Ipad_btn);
             this.TabletPanel.Controls.Add(this.Tablets_btn);
-            this.TabletPanel.Location = new System.Drawing.Point(567, 3);
+            this.TabletPanel.Location = new System.Drawing.Point(3, 150);
             this.TabletPanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.TabletPanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.TabletPanel.Name = "TabletPanel";
@@ -378,7 +382,7 @@ namespace ElectronicStoreApp
             this.TVpanel.Controls.Add(this.SonyTV_btn);
             this.TVpanel.Controls.Add(this.SamsungTV_btn);
             this.TVpanel.Controls.Add(this.TVs_btn);
-            this.TVpanel.Location = new System.Drawing.Point(755, 3);
+            this.TVpanel.Location = new System.Drawing.Point(3, 199);
             this.TVpanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.TVpanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.TVpanel.Name = "TVpanel";
@@ -433,22 +437,43 @@ namespace ElectronicStoreApp
             this.TVs_btn.UseVisualStyleBackColor = false;
             this.TVs_btn.Click += new System.EventHandler(this.TVs_btn_Click);
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 15;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel3.Location = new System.Drawing.Point(259, 0);
+            this.panel3.Location = new System.Drawing.Point(1075, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(920, 681);
+            this.panel3.Size = new System.Drawing.Size(104, 668);
             this.panel3.TabIndex = 2;
+            // 
+            // ComputerTimer
+            // 
+            this.ComputerTimer.Interval = 15;
+            this.ComputerTimer.Tick += new System.EventHandler(this.Computer_btn_Click);
+            // 
+            // AccounterTimer
+            // 
+            this.AccounterTimer.Interval = 15;
+            this.AccounterTimer.Tick += new System.EventHandler(this.MyAccount_btn_Click);
+            // 
+            // AudioTimer
+            // 
+            this.AudioTimer.Interval = 15;
+            this.AudioTimer.Tick += new System.EventHandler(this.Audio_btn_Click);
+            // 
+            // TabletsTimer
+            // 
+            this.TabletsTimer.Interval = 15;
+            this.TabletsTimer.Tick += new System.EventHandler(this.Tablets_btn_Click);
+            // 
+            // TVtimer
+            // 
+            this.TVtimer.Interval = 15;
+            this.TVtimer.Tick += new System.EventHandler(this.TVs_btn_Click);
             // 
             // MainMenu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1184, 681);
+            this.ClientSize = new System.Drawing.Size(1354, 887);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -475,7 +500,6 @@ namespace ElectronicStoreApp
         private Button HomeAduio_btn;
         private Button Headphones_btn;
         private Button Audio_btn;
-        private Timer timer1;
         private Panel TabletPanel;
         private Button Samsung_btn;
         private Button Ipad_btn;
@@ -492,5 +516,10 @@ namespace ElectronicStoreApp
         private Button MyAccount_btn;
         private Button Security_btn;
         private Button SignOut_btn;
+        private Timer ComputerTimer;
+        private Timer AccounterTimer;
+        private Timer AudioTimer;
+        private Timer TabletsTimer;
+        private Timer TVtimer;
     }
 }

@@ -11,7 +11,7 @@ namespace ElectronicStoreApp
 
         DataTable mydt;
         SqlDataAdapter myadapter;
-        SqlCommand mycommand;
+        
         SqlConnection conn;
         
 
@@ -31,7 +31,7 @@ namespace ElectronicStoreApp
                 Console.WriteLine("i open");
                 return true;
             }
-            catch (SqlException e)
+            catch (SqlException)
             {   
                 
                 conn = null;

@@ -9,72 +9,183 @@ using System.Windows.Forms;
 
 namespace ElectronicStoreApp
 {
-    
+
     public partial class MainMenu : Form
     {
-        private bool isCollapsed;
+        
+
         public MainMenu()
         {
             InitializeComponent();
         }
 
-        public void show_hide_menu(Panel mainPanel, Button button){
+        private bool Computer_btn_isCollapsed;
+        private bool MyAccount_btn_isCollapsed;
+        private bool Audio_btn_isCollapsed;
+        private bool Tablets_btn_isCollapsed;
+        private bool TVs_btn_isCollapsed;
 
-            if (isCollapsed)
+        public void show_hide_menu(Panel mainPanel, Button button, string tabName)
+        {
+
+            if (tabName == "Computers")
             {
-                button.Image = Resources.download_icon_bottom_chevron_chevrondowncircle_circle_down_icon_icon_1320185732544666525_16;
-                ComputerPanel.Height += 10;
-                if(mainPanel.Size == mainPanel.MaximumSize)
+                if (Computer_btn_isCollapsed)
                 {
-                    timer1.Stop();
-                    isCollapsed = false;
+                    button.Image = Resources.arrow_up_small;
+                    mainPanel.Height += 10;
+                    if (mainPanel.Size == mainPanel.MaximumSize)
+                    {
+                        ComputerTimer.Stop();
+                        Computer_btn_isCollapsed = false;
+                        return;
+                    }
+                }
+                else
+                {
+                    button.Image = Resources.download_icon_bottom_chevron_chevrondowncircle_circle_down_icon_icon_1320185732544666525_16;
+                    mainPanel.Height -= 10;
+                    if (mainPanel.Size == mainPanel.MinimumSize)
+                    {
+                        ComputerTimer.Stop();
+                        Computer_btn_isCollapsed = true;
+
+                    }
                 }
 
-            }else
+            }
+            else if (tabName == "Account")
             {
-                button.Image = Resources.arrow_up_small;
-                mainPanel.Height -= 10;
-                if (mainPanel.Size == mainPanel.MinimumSize)
+                if (MyAccount_btn_isCollapsed)
                 {
-                    timer1.Stop();
-                    isCollapsed = true;
+                    button.Image = Resources.arrow_up_small;
+                    mainPanel.Height += 10;
+                    if (mainPanel.Size == mainPanel.MaximumSize)
+                    {
+                        AccounterTimer.Stop();
+                        MyAccount_btn_isCollapsed = false;
+                    }
+
+                }
+                else
+                {
+                    button.Image = Resources.download_icon_bottom_chevron_chevrondowncircle_circle_down_icon_icon_1320185732544666525_16;
+                    mainPanel.Height -= 10;
+                    if (mainPanel.Size == mainPanel.MinimumSize)
+                    {
+                        AccounterTimer.Stop();
+                        MyAccount_btn_isCollapsed = true;
+                    }
                 }
             }
-        }
+            else if (tabName == "Audio")
+            {
+                if (Audio_btn_isCollapsed)
+                {
+                    button.Image = Resources.arrow_up_small;
+                    mainPanel.Height += 10;
+                    if (mainPanel.Size == mainPanel.MaximumSize)
+                    {
+                        AudioTimer.Stop();
+                        Audio_btn_isCollapsed = false;
+                    }
 
+                }
+                else
+                {
+                    button.Image = Resources.download_icon_bottom_chevron_chevrondowncircle_circle_down_icon_icon_1320185732544666525_16;
+                    mainPanel.Height -= 10;
+                    if (mainPanel.Size == mainPanel.MinimumSize)
+                    {
+                        AudioTimer.Stop();
+                        Audio_btn_isCollapsed = true;
+                    }
+                }
+            }
+            else if (tabName == "Tablets")
+            {
+                if (Tablets_btn_isCollapsed)
+                {
+                    button.Image = Resources.arrow_up_small;
+                    mainPanel.Height += 10;
+                    if (mainPanel.Size == mainPanel.MaximumSize)
+                    {
+                        TabletsTimer.Stop();
+                        Tablets_btn_isCollapsed = false;
+                    }
+
+                }
+                else
+                {
+                    button.Image = Resources.download_icon_bottom_chevron_chevrondowncircle_circle_down_icon_icon_1320185732544666525_16;
+                    mainPanel.Height -= 10;
+                    if (mainPanel.Size == mainPanel.MinimumSize)
+                    {
+                        TabletsTimer.Stop();
+                        Tablets_btn_isCollapsed = true;
+                    }
+                }
+            }
+            else if (tabName == "TV")
+            {
+                if (TVs_btn_isCollapsed)
+                {
+                    button.Image = Resources.arrow_up_small;
+                    mainPanel.Height += 10;
+                    if (mainPanel.Size == mainPanel.MaximumSize)
+                    {
+                        TVtimer.Stop();
+                        TVs_btn_isCollapsed = false;
+                    }
+
+                }
+                else
+                {
+                    button.Image = Resources.download_icon_bottom_chevron_chevrondowncircle_circle_down_icon_icon_1320185732544666525_16;
+                    mainPanel.Height -= 10;
+                    if (mainPanel.Size == mainPanel.MinimumSize)
+                    {
+                        TVtimer.Stop();
+                        TVs_btn_isCollapsed = true;
+                    }
+                }
+            }
+
+        }
         private void Computer_btn_Click(object sender, EventArgs e)
         {
-            Inventory_btn.Visible = true;
-            timer1.Tick += (s, ee) => show_hide_menu(ComputerPanel, Computer_btn);
+            ComputerTimer.Start();
+            show_hide_menu(ComputerPanel, Computer_btn, "Computers");
         }
 
         private void MyAccount_btn_Click(object sender, EventArgs e)
         {
+            clientObjs
 
-            int adminRights = loginWin.clientObj.adminRights;
-            if (adminRights == 1)
-            {
-                Inventory_btn.Visible = true;
-                timer1.Tick += (s, ee) => show_hide_menu(MyAcountPanel, MyAccount_btn);
-            }
+
+            AccounterTimer.Start();
+            show_hide_menu(MyAcountPanel, MyAccount_btn, "Account");
+            
         }
 
         private void Audio_btn_Click(object sender, EventArgs e)
         {
-            Inventory_btn.Visible = true;
-            timer1.Tick += (s, ee) => show_hide_menu(AudioPanel, Audio_btn);
+            AudioTimer.Start();
+            show_hide_menu(AudioPanel, Audio_btn, "Audio");
         }
 
         private void Tablets_btn_Click(object sender, EventArgs e)
         {
-            Inventory_btn.Visible = true;
-            timer1.Tick += (s, ee) => show_hide_menu(TabletPanel, Tablets_btn);
+            TabletsTimer.Start();
+            show_hide_menu(TabletPanel, Tablets_btn, "Tablets");
         }
 
         private void TVs_btn_Click(object sender, EventArgs e)
         {
-            Inventory_btn.Visible = true;
-            timer1.Tick += (s, ee) => show_hide_menu(TVpanel, TVs_btn);
+            TVtimer.Start();
+            show_hide_menu(TVpanel, TVs_btn, "TV");
         }
     }
-}
+
+} 
+

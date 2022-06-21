@@ -195,8 +195,6 @@ namespace ElectronicStoreApp
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Button button1;
-        private bool dbConnect;
-
         public TextBox TxtBoxUsername { get => txtBoxUsername; set => txtBoxUsername = value; }
     }
 }
