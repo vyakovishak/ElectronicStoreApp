@@ -103,6 +103,16 @@ namespace ElectronicStoreApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cart {
+            get {
+                object obj = ResourceManager.GetObject("cart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap download_icon_bottom_chevron_chevrondowncircle_circle_down_icon_icon_1320185732544666525_16 {
             get {
                 object obj = ResourceManager.GetObject("download-icon-bottom+chevron+chevrondowncircle+circle+down+icon+icon-132018573254" +
@@ -118,6 +128,36 @@ namespace ElectronicStoreApp.Properties {
             get {
                 object obj = ResourceManager.GetObject("download-icon-bottom+chevron+chevrondowncircle+circle+down+icon+icon-132018573254" +
                         "4666525_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap left_arrow {
+            get {
+                object obj = ResourceManager.GetObject("left arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LOGO {
+            get {
+                object obj = ResourceManager.GetObject("LOGO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap right_arrow {
+            get {
+                object obj = ResourceManager.GetObject("right arrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

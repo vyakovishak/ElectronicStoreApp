@@ -198,14 +198,12 @@ namespace ElectronicStoreApp
             show_hide_menu(TVpanel, TVs_btn, "TV");
         }
 
-        private void label2_Click(object sender, EventArgs e)
+
+        private void CustumersData_btn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            this.Hide();
+            CustomerWin CW = new CustomerWin();
+            CW.Show();
         }
     }
 
