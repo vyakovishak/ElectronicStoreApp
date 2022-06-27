@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Web;
+using System.IO;
+using System.Drawing;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace ElectronicStoreApp
 {
@@ -24,6 +29,9 @@ namespace ElectronicStoreApp
         private bool Audio_btn_isCollapsed = true;
         private bool Tablets_btn_isCollapsed = true;
         private bool TVs_btn_isCollapsed = true;
+        private string ActiveCategory;
+        private int ActivePageNum = 1 ;
+        private string subCategory = null;
 
         public void show_hide_menu(Panel mainPanel, Button button, string tabName)
         {
@@ -198,12 +206,126 @@ namespace ElectronicStoreApp
             show_hide_menu(TVpanel, TVs_btn, "TV");
         }
 
-
         private void CustumersData_btn_Click(object sender, EventArgs e)
         {
             this.Hide();
             CustomerWin CW = new CustomerWin();
             CW.Show();
+        }
+
+        private void Inventory_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            InventoryWin IW = new InventoryWin();
+            IW.Show();
+        }
+
+        private void PersonalInfo_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UserWin UW = new UserWin();
+            UW.Show();
+        }
+
+        private void Security_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SecurityWin SW = new SecurityWin();
+            SW.Show();
+        }
+
+        private void Laptop_btn_Click(object sender, EventArgs e)
+        {
+            ActiveCategory = "Tablets";
+            fillPageWithProdocts("Laptops", ActivePageNum, null);
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Desktop_btn_Click(object sender, EventArgs e)
+        {
+            DBConnection db = new DBConnection();
+            Image img = db.testCall();
+            pictureBox1.Image = img;
+            ActiveCategory = "Tablets";
+            fillPageWithProdocts("Desktops", ActivePageNum,null);
+        }
+
+        private void fillPageWithProdocts(string TableName, int pageNum, string prodoctName=null)
+        {
+            pageNum = pageNum;
+            DBConnection db = new DBConnection();
+            var data = db.Prodocts(TableName, prodoctName, pageNum);
+
+            List<Label> listOfTittles = new List<Label>();
+            listOfTittles.Add(TittleLabel1);
+            listOfTittles.Add(TittleLabel2);
+            listOfTittles.Add(TittleLabel3);
+
+            List<Label> listOfrate = new List<Label>();
+            listOfrate.Add(RateLabel1);
+            listOfrate.Add(RateLabel2);
+            listOfrate.Add(RateLabel3);
+
+            List<TextBox> listOfBoxes = new List<TextBox>();
+            listOfBoxes.Add(DesBox1);
+            listOfBoxes.Add(DesBox2);
+            listOfBoxes.Add(DesBox3);
+
+            List<Label> listOfPriceLb = new List<Label>();
+            listOfPriceLb.Add(Pricelb1);
+            listOfPriceLb.Add(Pricelb2);
+            listOfPriceLb.Add(Pricelb3);
+
+            foreach (var price in listOfPriceLb)
+            {
+                price.Text = data[price.TabIndex]["regularPrice"];
+            }
+
+            foreach (var box in listOfBoxes)
+            {
+                box.Text = data[box.TabIndex]["longDescription"];
+            }
+
+            foreach (var rate in listOfrate)
+            {
+                rate.Text = data[rate.TabIndex]["customerReviewCount"];
+            }
+
+            foreach (var lable in listOfTittles)
+            {
+                lable.Text = data[lable.TabIndex]["name"];
+            }
+
+        }
+
+        private void Headphones_btn_Click(object sender, EventArgs e)
+        {
+            ActiveCategory = "Tablets";
+            fillPageWithProdocts("Headphones", ActivePageNum, null);
+        }
+
+        private void HomeAduio_btn_Click(object sender, EventArgs e)
+        {
+            ActiveCategory = "Tablets";
+            fillPageWithProdocts("Homeaudio", ActivePageNum,null);
+        }
+
+        private void Ipad_btn_Click(object sender, EventArgs e)
+        {
+            ActiveCategory = "Tablets";
+            subCategory = "Apple";
+            fillPageWithProdocts("Tablets", ActivePageNum, "Apple");
+        }
+
+        private void forward_btn_Click(object sender, EventArgs e)
+        {
+            ActivePageNum = ActivePageNum +1;
+
+            fillPageWithProdocts(ActiveCategory, ActivePageNum, subCategory);
         }
     }
 

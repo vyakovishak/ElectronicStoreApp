@@ -1,8 +1,15 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace ElectronicStoreApp
 {
@@ -101,6 +108,88 @@ namespace ElectronicStoreApp
             }
         }
 
+        public List<Dictionary<string, string>> Prodocts(String tabelName, String prodoctName, int pageNum)
+        {
+            int oldPage = 0;
+            int newPage = 3;
+            if (pageNum > 1 )
+            {
+                oldPage = newPage;
+                newPage = newPage + 3;
+            }
+
+            bool dbStatus = ConnectToCustumerDatabase();
+            string query;
+            if (prodoctName == null)
+            {
+                 query = "select [customerReviewAverage], [customerReviewCount]," +
+                "[longDescription], [manufacturer], [name], [regularPrice]  from dbo." + tabelName + " WHERE imgId BETWEEN "+ oldPage + " AND "+newPage+"";
+            }
+            else
+            {
+                 query =  "select TOP 3 [customerReviewAverage], [customerReviewCount]," +
+                "[longDescription], [manufacturer], [name], [regularPrice]  from dbo." + tabelName + " WHERE imgId BETWEEN " + oldPage + " AND " + newPage + " AND  manufacturer='" + prodoctName + "'";
+            }
+            
+            if (dbStatus == true)
+            {
+                List<Dictionary<string, string>> listOfProdocts = new List<Dictionary<string, string>>();
+                SqlCommand createUserCD = new SqlCommand();
+                createUserCD.CommandText = query;
+
+                createUserCD.Connection = conn;
+                SqlDataReader oReader = createUserCD.ExecuteReader();
+                while (oReader.Read())
+                {
+                    var prodoct = new Dictionary<string, string>(){
+                        {"customerReviewAverage", oReader["customerReviewAverage"].ToString()},
+                        {"customerReviewCount", oReader["customerReviewCount"].ToString()},
+                        {"longDescription", Base64Decode(oReader["longDescription"].ToString())},
+                        {"manufacturer", oReader["manufacturer"].ToString()},
+                        {"name", oReader["name"].ToString()},
+                        {"regularPrice", oReader["regularPrice"].ToString()}
+                    };
+                    listOfProdocts.Add(prodoct);
+                }
+                return listOfProdocts;
+            }           
+            else
+            {
+                MessageBox.Show("We havning a issues connecting to database, please try again!!!");
+                return null;
+            }
+            return null;
+
+        }
+
+
+        public Image testCall()
+        {
+            byte[] byteArry;
+            Image img;
+            bool dbStatus = ConnectToCustumerDatabase();
+            string query;
+            query = "select bImage  from dbo.Laptops WHERE imgId BETWEEN 1 AND 2 ";
+            SqlCommand createUserCD = new SqlCommand();
+            createUserCD.CommandText = query;
+
+            createUserCD.Connection = conn;
+            SqlDataReader oReader = createUserCD.ExecuteReader();
+            while (oReader.Read())
+            {
+                byteArry = (byte[])oReader["bImage"];
+                MemoryStream stream = new MemoryStream();
+                stream.Write(byteArry,0, byteArry.Length);
+                img = Image.FromStream(stream);
+                return img;
+            }
+            return null;
+        }
+        public static string Base64Decode(string base64EncodedData)
+        {
+            byte[] textBytes = Encoding.Unicode.GetBytes(base64EncodedData);
+            return Encoding.UTF8.GetString(Encoding.Convert(Encoding.Unicode, Encoding.UTF8, textBytes));
+        }
     }
 
 }

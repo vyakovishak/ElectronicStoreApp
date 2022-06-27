@@ -14,5 +14,11 @@ namespace ElectronicStoreApp
         {
             InitializeComponent();
         }
+
+        private void UserWin_Load(object sender, EventArgs e)
+        {
+            Customer obj = loginWin.clientObj;
+            MessageBox.Show(obj.username);
+        }
     }
 }
