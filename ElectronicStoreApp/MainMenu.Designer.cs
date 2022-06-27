@@ -540,7 +540,7 @@ namespace ElectronicStoreApp
             this.TVpanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.TVpanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.TVpanel.Name = "TVpanel";
-            this.TVpanel.Size = new System.Drawing.Size(182, 43);
+            this.TVpanel.Size = new System.Drawing.Size(182, 129);
             this.TVpanel.TabIndex = 7;
             // 
             // SonyTV_btn
@@ -572,6 +572,7 @@ namespace ElectronicStoreApp
             this.SamsungTV_btn.TabIndex = 3;
             this.SamsungTV_btn.Text = "Samsung TV";
             this.SamsungTV_btn.UseVisualStyleBackColor = false;
+            this.SamsungTV_btn.Click += new System.EventHandler(this.SamsungTV_btn_Click);
             // 
             // TVs_btn
             // 
@@ -1250,7 +1251,7 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel14.Size = new System.Drawing.Size(293, 282);
-            this.tableLayoutPanel14.TabIndex = 0;
+            this.tableLayoutPanel14.TabIndex = 2;
             // 
             // imageBox3
             // 
@@ -1259,7 +1260,7 @@ namespace ElectronicStoreApp
             this.imageBox3.Name = "imageBox3";
             this.imageBox3.Size = new System.Drawing.Size(287, 276);
             this.imageBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBox3.TabIndex = 0;
+            this.imageBox3.TabIndex = 2;
             this.imageBox3.TabStop = false;
             // 
             // panel4
@@ -1387,7 +1388,7 @@ namespace ElectronicStoreApp
             this.imageBox2.Name = "imageBox2";
             this.imageBox2.Size = new System.Drawing.Size(287, 276);
             this.imageBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imageBox2.TabIndex = 0;
+            this.imageBox2.TabIndex = 1;
             this.imageBox2.TabStop = false;
             // 
             // panel3

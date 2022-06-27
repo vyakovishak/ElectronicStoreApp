@@ -1,0 +1,1 @@
+﻿select  [customerReviewAverage], [customerReviewCount], [longDescription], [manufacturer], [name], [regularPrice]  from dbo.Tablets WHERE CONVERT(VARCHAR,manufacturer) = 'Apple';

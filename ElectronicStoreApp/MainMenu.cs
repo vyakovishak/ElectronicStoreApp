@@ -176,7 +176,7 @@ namespace ElectronicStoreApp
         {
            
             Customer obj = loginWin.clientObj;
-            if (obj.adminRights == 1)
+            if (obj.adminRights == 0)
             {
                 Inventory_btn.Visible = true;
                 CustumersData_btn.Visible = true;
@@ -236,7 +236,10 @@ namespace ElectronicStoreApp
 
         private void Laptop_btn_Click(object sender, EventArgs e)
         {
-            ActiveCategory = "Tablets";
+            ActiveCategory = "Laptops";
+            //DBConnection t = new DBConnection(); 
+            //t.fixData();
+            ActivePageNum = ActivePageNum + 1;
             fillPageWithProdocts("Laptops", ActivePageNum, null);
         }
 
@@ -247,10 +250,8 @@ namespace ElectronicStoreApp
 
         private void Desktop_btn_Click(object sender, EventArgs e)
         {
-            DBConnection db = new DBConnection();
-            Image img = db.testCall();
-            pictureBox1.Image = img;
-            ActiveCategory = "Tablets";
+            ActiveCategory = "Desktops";
+            ActivePageNum = 1;
             fillPageWithProdocts("Desktops", ActivePageNum,null);
         }
 
@@ -259,7 +260,7 @@ namespace ElectronicStoreApp
             pageNum = pageNum;
             DBConnection db = new DBConnection();
             var data = db.Prodocts(TableName, prodoctName, pageNum);
-
+            
             List<Label> listOfTittles = new List<Label>();
             listOfTittles.Add(TittleLabel1);
             listOfTittles.Add(TittleLabel2);
@@ -280,37 +281,50 @@ namespace ElectronicStoreApp
             listOfPriceLb.Add(Pricelb2);
             listOfPriceLb.Add(Pricelb3);
 
+            List<PictureBox> listOfImg = new List<PictureBox>();
+            listOfImg.Add(imageBox1);
+            listOfImg.Add(imageBox2);
+            listOfImg.Add(imageBox3);
+
+            foreach (var img in listOfImg)
+            {
+
+                img.Image = data[img.TabIndex]["bImage"] as Image;
+            }
+
             foreach (var price in listOfPriceLb)
             {
-                price.Text = data[price.TabIndex]["regularPrice"];
+                price.Text = data[price.TabIndex]["regularPrice"].ToString();
             }
 
             foreach (var box in listOfBoxes)
             {
-                box.Text = data[box.TabIndex]["longDescription"];
+                box.Text = data[box.TabIndex]["longDescription"].ToString();
             }
 
             foreach (var rate in listOfrate)
             {
-                rate.Text = data[rate.TabIndex]["customerReviewCount"];
+                rate.Text = data[rate.TabIndex]["customerReviewCount"].ToString();
             }
 
             foreach (var lable in listOfTittles)
             {
-                lable.Text = data[lable.TabIndex]["name"];
+                lable.Text = data[lable.TabIndex]["name"].ToString();
             }
 
         }
 
         private void Headphones_btn_Click(object sender, EventArgs e)
         {
-            ActiveCategory = "Tablets";
+            ActiveCategory = "Headphones";
+            ActivePageNum = 1;
             fillPageWithProdocts("Headphones", ActivePageNum, null);
         }
 
         private void HomeAduio_btn_Click(object sender, EventArgs e)
         {
-            ActiveCategory = "Tablets";
+            ActiveCategory = "Homeaudio";
+            ActivePageNum = 1;
             fillPageWithProdocts("Homeaudio", ActivePageNum,null);
         }
 
@@ -318,6 +332,7 @@ namespace ElectronicStoreApp
         {
             ActiveCategory = "Tablets";
             subCategory = "Apple";
+            ActivePageNum = 1;
             fillPageWithProdocts("Tablets", ActivePageNum, "Apple");
         }
 
@@ -326,6 +341,14 @@ namespace ElectronicStoreApp
             ActivePageNum = ActivePageNum +1;
 
             fillPageWithProdocts(ActiveCategory, ActivePageNum, subCategory);
+        }
+
+        private void SamsungTV_btn_Click(object sender, EventArgs e)
+        {
+            ActiveCategory = "TVs";
+            subCategory = "Samsung TV";
+            ActivePageNum = 1;
+            fillPageWithProdocts("Tablets", ActivePageNum, "Apple");
         }
     }
 

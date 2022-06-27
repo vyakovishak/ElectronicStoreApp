@@ -142,6 +142,7 @@ namespace ElectronicStoreApp
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Window;
+            this.button1.FlatAppearance.BorderSize = 0;
             resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = false;

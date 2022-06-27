@@ -14,12 +14,11 @@ namespace ElectronicStoreApp
         [STAThread]
         static void Main()
         {
-            test t =new test();
-            t.tests();
-            //Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new test());
+
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new loginWin());
         }
     }
 }

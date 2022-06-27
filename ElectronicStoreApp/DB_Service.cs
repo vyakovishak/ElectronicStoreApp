@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using Windows.UI.Xaml.Media.Imaging;
@@ -108,7 +109,7 @@ namespace ElectronicStoreApp
             }
         }
 
-        public List<Dictionary<string, string>> Prodocts(String tabelName, String prodoctName, int pageNum)
+        public List<Dictionary<string, object>> Prodocts(String tabelName, String prodoctName, int pageNum)
         {
             int oldPage = 0;
             int newPage = 3;
@@ -123,17 +124,17 @@ namespace ElectronicStoreApp
             if (prodoctName == null)
             {
                  query = "select [customerReviewAverage], [customerReviewCount]," +
-                "[longDescription], [manufacturer], [name], [regularPrice]  from dbo." + tabelName + " WHERE imgId BETWEEN "+ oldPage + " AND "+newPage+"";
+                 "[longDescription], [manufacturer], [name], [regularPrice], [bImage]  from dbo." + tabelName + " WHERE imgId BETWEEN "+ oldPage + " AND "+newPage+"";
             }
             else
             {
                  query =  "select TOP 3 [customerReviewAverage], [customerReviewCount]," +
-                "[longDescription], [manufacturer], [name], [regularPrice]  from dbo." + tabelName + " WHERE imgId BETWEEN " + oldPage + " AND " + newPage + " AND  manufacturer='" + prodoctName + "'";
+                 "[longDescription], [manufacturer], [name], [regularPrice], [bImage] from dbo." + tabelName + " WHERE imgId BETWEEN " + oldPage + " AND " + newPage + " AND  manufacturer='" + prodoctName + "'";
             }
             
             if (dbStatus == true)
             {
-                List<Dictionary<string, string>> listOfProdocts = new List<Dictionary<string, string>>();
+                List<Dictionary<string, object>> listOfProdocts = new List<Dictionary<string, object>>();
                 SqlCommand createUserCD = new SqlCommand();
                 createUserCD.CommandText = query;
 
@@ -141,13 +142,18 @@ namespace ElectronicStoreApp
                 SqlDataReader oReader = createUserCD.ExecuteReader();
                 while (oReader.Read())
                 {
-                    var prodoct = new Dictionary<string, string>(){
+                    byte[] bytes = (byte[])oReader["bImage"];
+                    MemoryStream ms = new MemoryStream();
+                    ms.Write(bytes,0,bytes.Length);
+                    Image img = Image.FromStream(ms);
+                    var prodoct = new Dictionary<string, object>(){
                         {"customerReviewAverage", oReader["customerReviewAverage"].ToString()},
                         {"customerReviewCount", oReader["customerReviewCount"].ToString()},
                         {"longDescription", Base64Decode(oReader["longDescription"].ToString())},
                         {"manufacturer", oReader["manufacturer"].ToString()},
                         {"name", oReader["name"].ToString()},
-                        {"regularPrice", oReader["regularPrice"].ToString()}
+                        {"regularPrice", oReader["regularPrice"].ToString()},
+                        {"bImage", img}
                     };
                     listOfProdocts.Add(prodoct);
                 }
@@ -163,32 +169,102 @@ namespace ElectronicStoreApp
         }
 
 
-        public Image testCall()
+        public void fixData()
         {
             byte[] byteArry;
-            Image img;
             bool dbStatus = ConnectToCustumerDatabase();
             string query;
-            query = "select bImage  from dbo.Laptops WHERE imgId BETWEEN 1 AND 2 ";
+            query = "select image from dbo.Laptops";
             SqlCommand createUserCD = new SqlCommand();
             createUserCD.CommandText = query;
 
             createUserCD.Connection = conn;
             SqlDataReader oReader = createUserCD.ExecuteReader();
+            oReader.Read();
+            int num = 0;
+
             while (oReader.Read())
+
             {
-                byteArry = (byte[])oReader["bImage"];
-                MemoryStream stream = new MemoryStream();
-                stream.Write(byteArry,0, byteArry.Length);
-                img = Image.FromStream(stream);
-                return img;
+                System.Threading.Thread.Sleep(5000);
+
+                byte[] m_Bytes = ReadToEnd((new MemoryStream(new WebClient().DownloadData(oReader["image"].ToString()))));
+                
+                updateData(m_Bytes, num);
+                num = num + 1;
             }
-            return null;
+            
+        }
+
+        public void updateData(byte[] m_Bytes, int num)
+        {
+            
+            SqlCommand createUserCD = new SqlCommand();
+            SqlConnection conn1 = new SqlConnection();
+            conn1.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=StoreDB ;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            conn1.Open();
+            createUserCD.Connection = conn1;
+            createUserCD.CommandText = "UPDATE dbo.Laptops SET bImage=@B WHERE imgId=@I";
+            createUserCD.Parameters.AddWithValue("@B", m_Bytes);
+            createUserCD.Parameters.AddWithValue("@I", num);
+            createUserCD.ExecuteNonQuery();
         }
         public static string Base64Decode(string base64EncodedData)
         {
             byte[] textBytes = Encoding.Unicode.GetBytes(base64EncodedData);
             return Encoding.UTF8.GetString(Encoding.Convert(Encoding.Unicode, Encoding.UTF8, textBytes));
+        }
+
+        public static byte[] ReadToEnd(System.IO.Stream stream)
+        {
+            long originalPosition = 0;
+
+            if (stream.CanSeek)
+            {
+                originalPosition = stream.Position;
+                stream.Position = 0;
+            }
+
+            try
+            {
+                byte[] readBuffer = new byte[4096];
+
+                int totalBytesRead = 0;
+                int bytesRead;
+
+                while ((bytesRead = stream.Read(readBuffer, totalBytesRead, readBuffer.Length - totalBytesRead)) > 0)
+                {
+                    totalBytesRead += bytesRead;
+
+                    if (totalBytesRead == readBuffer.Length)
+                    {
+                        int nextByte = stream.ReadByte();
+                        if (nextByte != -1)
+                        {
+                            byte[] temp = new byte[readBuffer.Length * 2];
+                            Buffer.BlockCopy(readBuffer, 0, temp, 0, readBuffer.Length);
+                            Buffer.SetByte(temp, totalBytesRead, (byte)nextByte);
+                            readBuffer = temp;
+                            totalBytesRead++;
+                        }
+                    }
+                }
+
+                byte[] buffer = readBuffer;
+                if (readBuffer.Length != totalBytesRead)
+                {
+                    buffer = new byte[totalBytesRead];
+                    Buffer.BlockCopy(readBuffer, 0, buffer, 0, totalBytesRead);
+                }
+                return buffer;
+            }
+            finally
+            {
+                if (stream.CanSeek)
+                {
+                    stream.Position = originalPosition;
+                }
+            }
         }
     }
 
