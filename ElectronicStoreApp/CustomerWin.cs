@@ -17,8 +17,9 @@ namespace ElectronicStoreApp
 
         private void CustomerWin_Load(object sender, EventArgs e)
         {
-            Customer obj = loginWin.clientObj;
-            MessageBox.Show(obj.username);
+            DBConnection db = new DBConnection();
+            DataTable dt = db.getCustomerDatabase("Customer");
+            dataGridView1.DataSource = dt;
         }
     }
 }

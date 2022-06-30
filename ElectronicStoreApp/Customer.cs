@@ -8,9 +8,9 @@ namespace ElectronicStoreApp
     {
         public string username;
         public int adminRights;
-        public Array cart;
+        public string cart;
 
-        public Customer(string cUsername, int cAdminRights, Array cCart)
+        public Customer(string cUsername, int cAdminRights, string cCart)
         {
             username = cUsername;
             adminRights = cAdminRights;
@@ -29,7 +29,7 @@ namespace ElectronicStoreApp
             set { adminRights = value; }
         }
 
-        public Array Cart
+        public string Cart
         {
             get { return cart; }
             set { cart = value; }

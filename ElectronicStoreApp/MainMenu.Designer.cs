@@ -112,7 +112,6 @@ namespace ElectronicStoreApp
             this.button19 = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
@@ -123,7 +122,7 @@ namespace ElectronicStoreApp
             this.DesBox3 = new System.Windows.Forms.TextBox();
             this.RateLabel3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
-            this.button9 = new System.Windows.Forms.Button();
+            this.AddToCart3_btn = new System.Windows.Forms.Button();
             this.Pricelb3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
@@ -135,7 +134,7 @@ namespace ElectronicStoreApp
             this.RateLabel2 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
-            this.button7 = new System.Windows.Forms.Button();
+            this.AddToCart2_btn = new System.Windows.Forms.Button();
             this.Pricelb2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -146,24 +145,24 @@ namespace ElectronicStoreApp
             this.TittleLabel1 = new System.Windows.Forms.Label();
             this.RateLabel1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
-            this.button6 = new System.Windows.Forms.Button();
+            this.AddToCart1_btn = new System.Windows.Forms.Button();
             this.Pricelb1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ActiveTab_label = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
+            this.backward_btn = new System.Windows.Forms.Button();
+            this.cart_btn = new System.Windows.Forms.Button();
             this.pageNum = new System.Windows.Forms.Label();
             this.forward_btn = new System.Windows.Forms.Button();
-            this.backward_btn = new System.Windows.Forms.Button();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
+            this.ActiveTab_label = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.welcomeUsername = new System.Windows.Forms.Label();
             this.tableLayoutPanel19 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel23 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2.SuspendLayout();
             this.MyAcountPanel.SuspendLayout();
             this.ComputerPanel.SuspendLayout();
@@ -214,20 +213,20 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel25.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel19.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.flowLayoutPanel2.BackColor = System.Drawing.SystemColors.Window;
             this.flowLayoutPanel2.Controls.Add(this.MyAcountPanel);
             this.flowLayoutPanel2.Controls.Add(this.ComputerPanel);
             this.flowLayoutPanel2.Controls.Add(this.AudioPanel);
             this.flowLayoutPanel2.Controls.Add(this.TabletPanel);
             this.flowLayoutPanel2.Controls.Add(this.TVpanel);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 238);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 83);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(192, 650);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(192, 805);
             this.flowLayoutPanel2.TabIndex = 1;
             // 
             // MyAcountPanel
@@ -239,6 +238,7 @@ namespace ElectronicStoreApp
             this.MyAcountPanel.Controls.Add(this.CustumersData_btn);
             this.MyAcountPanel.Controls.Add(this.MyAccount_btn);
             this.MyAcountPanel.Location = new System.Drawing.Point(3, 3);
+            this.MyAcountPanel.MaximumSize = new System.Drawing.Size(182, 173);
             this.MyAcountPanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.MyAcountPanel.Name = "MyAcountPanel";
             this.MyAcountPanel.Size = new System.Drawing.Size(182, 43);
@@ -254,10 +254,11 @@ namespace ElectronicStoreApp
             this.SignOut_btn.ForeColor = System.Drawing.Color.MintCream;
             this.SignOut_btn.Location = new System.Drawing.Point(0, 215);
             this.SignOut_btn.Name = "SignOut_btn";
-            this.SignOut_btn.Size = new System.Drawing.Size(182, 44);
+            this.SignOut_btn.Size = new System.Drawing.Size(182, 43);
             this.SignOut_btn.TabIndex = 7;
             this.SignOut_btn.Text = "Sign Out";
             this.SignOut_btn.UseVisualStyleBackColor = false;
+            this.SignOut_btn.Click += new System.EventHandler(this.SignOut_btn_Click);
             // 
             // Security_btn
             // 
@@ -352,7 +353,7 @@ namespace ElectronicStoreApp
             this.ComputerPanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.ComputerPanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.ComputerPanel.Name = "ComputerPanel";
-            this.ComputerPanel.Size = new System.Drawing.Size(182, 129);
+            this.ComputerPanel.Size = new System.Drawing.Size(182, 43);
             this.ComputerPanel.TabIndex = 2;
             // 
             // Desktop_btn
@@ -410,7 +411,7 @@ namespace ElectronicStoreApp
             this.AudioPanel.Controls.Add(this.HomeAduio_btn);
             this.AudioPanel.Controls.Add(this.Headphones_btn);
             this.AudioPanel.Controls.Add(this.Audio_btn);
-            this.AudioPanel.Location = new System.Drawing.Point(3, 187);
+            this.AudioPanel.Location = new System.Drawing.Point(3, 101);
             this.AudioPanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.AudioPanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.AudioPanel.Name = "AudioPanel";
@@ -474,7 +475,7 @@ namespace ElectronicStoreApp
             this.TabletPanel.Controls.Add(this.Samsung_btn);
             this.TabletPanel.Controls.Add(this.Ipad_btn);
             this.TabletPanel.Controls.Add(this.Tablets_btn);
-            this.TabletPanel.Location = new System.Drawing.Point(3, 322);
+            this.TabletPanel.Location = new System.Drawing.Point(3, 236);
             this.TabletPanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.TabletPanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.TabletPanel.Name = "TabletPanel";
@@ -495,6 +496,7 @@ namespace ElectronicStoreApp
             this.Samsung_btn.TabIndex = 4;
             this.Samsung_btn.Text = "Samsung";
             this.Samsung_btn.UseVisualStyleBackColor = false;
+            this.Samsung_btn.Click += new System.EventHandler(this.Samsung_btn_Click);
             // 
             // Ipad_btn
             // 
@@ -536,7 +538,7 @@ namespace ElectronicStoreApp
             this.TVpanel.Controls.Add(this.SonyTV_btn);
             this.TVpanel.Controls.Add(this.SamsungTV_btn);
             this.TVpanel.Controls.Add(this.TVs_btn);
-            this.TVpanel.Location = new System.Drawing.Point(3, 457);
+            this.TVpanel.Location = new System.Drawing.Point(3, 371);
             this.TVpanel.MaximumSize = new System.Drawing.Size(182, 129);
             this.TVpanel.MinimumSize = new System.Drawing.Size(182, 43);
             this.TVpanel.Name = "TVpanel";
@@ -557,6 +559,7 @@ namespace ElectronicStoreApp
             this.SonyTV_btn.TabIndex = 4;
             this.SonyTV_btn.Text = "Sony TV";
             this.SonyTV_btn.UseVisualStyleBackColor = false;
+            this.SonyTV_btn.Click += new System.EventHandler(this.SonyTV_btn_Click);
             // 
             // SamsungTV_btn
             // 
@@ -1194,20 +1197,12 @@ namespace ElectronicStoreApp
             // pictureBox1
             // 
             this.pictureBox1.Image = global::ElectronicStoreApp.Properties.Resources.LOGO;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(-8, 382);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(182, 172);
+            this.pictureBox1.Size = new System.Drawing.Size(94, 125);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel5.Location = new System.Drawing.Point(191, 1);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(10, 887);
-            this.panel5.TabIndex = 9;
             // 
             // tableLayoutPanel1
             // 
@@ -1216,13 +1211,13 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel13, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel8, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(205, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(205, 38);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1056, 883);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1050, 846);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // tableLayoutPanel13
@@ -1234,11 +1229,11 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel13.Controls.Add(this.tableLayoutPanel14, 0, 0);
             this.tableLayoutPanel13.Controls.Add(this.panel4, 1, 0);
             this.tableLayoutPanel13.Controls.Add(this.tableLayoutPanel24, 2, 0);
-            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 591);
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 567);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(1043, 288);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(1043, 276);
             this.tableLayoutPanel13.TabIndex = 2;
             // 
             // tableLayoutPanel14
@@ -1250,7 +1245,7 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
             this.tableLayoutPanel14.RowCount = 1;
             this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel14.Size = new System.Drawing.Size(293, 282);
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(293, 270);
             this.tableLayoutPanel14.TabIndex = 2;
             // 
             // imageBox3
@@ -1258,7 +1253,7 @@ namespace ElectronicStoreApp
             this.imageBox3.Image = ((System.Drawing.Image)(resources.GetObject("imageBox3.Image")));
             this.imageBox3.Location = new System.Drawing.Point(3, 3);
             this.imageBox3.Name = "imageBox3";
-            this.imageBox3.Size = new System.Drawing.Size(287, 276);
+            this.imageBox3.Size = new System.Drawing.Size(287, 264);
             this.imageBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBox3.TabIndex = 2;
             this.imageBox3.TabStop = false;
@@ -1268,7 +1263,7 @@ namespace ElectronicStoreApp
             this.panel4.Controls.Add(this.tableLayoutPanel15);
             this.panel4.Location = new System.Drawing.Point(302, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(637, 282);
+            this.panel4.Size = new System.Drawing.Size(637, 270);
             this.panel4.TabIndex = 1;
             // 
             // tableLayoutPanel15
@@ -1323,31 +1318,32 @@ namespace ElectronicStoreApp
             // 
             this.tableLayoutPanel24.ColumnCount = 1;
             this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel24.Controls.Add(this.button9, 0, 1);
+            this.tableLayoutPanel24.Controls.Add(this.AddToCart3_btn, 0, 1);
             this.tableLayoutPanel24.Controls.Add(this.Pricelb3, 0, 0);
             this.tableLayoutPanel24.Location = new System.Drawing.Point(945, 3);
             this.tableLayoutPanel24.Name = "tableLayoutPanel24";
             this.tableLayoutPanel24.RowCount = 2;
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel24.Size = new System.Drawing.Size(95, 282);
+            this.tableLayoutPanel24.Size = new System.Drawing.Size(95, 270);
             this.tableLayoutPanel24.TabIndex = 2;
             // 
-            // button9
+            // AddToCart3_btn
             // 
-            this.button9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button9.Location = new System.Drawing.Point(3, 212);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(89, 67);
-            this.button9.TabIndex = 1;
-            this.button9.Text = "Add to cart";
-            this.button9.UseVisualStyleBackColor = true;
+            this.AddToCart3_btn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddToCart3_btn.Location = new System.Drawing.Point(3, 169);
+            this.AddToCart3_btn.Name = "AddToCart3_btn";
+            this.AddToCart3_btn.Size = new System.Drawing.Size(89, 67);
+            this.AddToCart3_btn.TabIndex = 2;
+            this.AddToCart3_btn.Text = "Add to cart";
+            this.AddToCart3_btn.UseVisualStyleBackColor = true;
+            this.AddToCart3_btn.Click += new System.EventHandler(this.AddToCart3_btn_Click);
             // 
             // Pricelb3
             // 
             this.Pricelb3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Pricelb3.AutoSize = true;
-            this.Pricelb3.Location = new System.Drawing.Point(3, 60);
+            this.Pricelb3.Location = new System.Drawing.Point(3, 57);
             this.Pricelb3.Name = "Pricelb3";
             this.Pricelb3.Size = new System.Drawing.Size(57, 21);
             this.Pricelb3.TabIndex = 2;
@@ -1362,11 +1358,11 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel8.Controls.Add(this.panel11, 2, 0);
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 297);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 285);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(1043, 288);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(1043, 276);
             this.tableLayoutPanel8.TabIndex = 1;
             // 
             // tableLayoutPanel9
@@ -1378,7 +1374,7 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 1;
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(293, 282);
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(293, 270);
             this.tableLayoutPanel9.TabIndex = 0;
             // 
             // imageBox2
@@ -1386,7 +1382,7 @@ namespace ElectronicStoreApp
             this.imageBox2.Image = ((System.Drawing.Image)(resources.GetObject("imageBox2.Image")));
             this.imageBox2.Location = new System.Drawing.Point(3, 3);
             this.imageBox2.Name = "imageBox2";
-            this.imageBox2.Size = new System.Drawing.Size(287, 276);
+            this.imageBox2.Size = new System.Drawing.Size(287, 264);
             this.imageBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBox2.TabIndex = 1;
             this.imageBox2.TabStop = false;
@@ -1396,7 +1392,7 @@ namespace ElectronicStoreApp
             this.panel3.Controls.Add(this.tableLayoutPanel12);
             this.panel3.Location = new System.Drawing.Point(302, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(637, 282);
+            this.panel3.Size = new System.Drawing.Size(637, 270);
             this.panel3.TabIndex = 1;
             // 
             // tableLayoutPanel12
@@ -1453,14 +1449,14 @@ namespace ElectronicStoreApp
             this.panel11.Controls.Add(this.tableLayoutPanel18);
             this.panel11.Location = new System.Drawing.Point(945, 3);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(95, 282);
+            this.panel11.Size = new System.Drawing.Size(95, 270);
             this.panel11.TabIndex = 2;
             // 
             // tableLayoutPanel18
             // 
             this.tableLayoutPanel18.ColumnCount = 1;
             this.tableLayoutPanel18.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel18.Controls.Add(this.button7, 0, 1);
+            this.tableLayoutPanel18.Controls.Add(this.AddToCart2_btn, 0, 1);
             this.tableLayoutPanel18.Controls.Add(this.Pricelb2, 0, 0);
             this.tableLayoutPanel18.Location = new System.Drawing.Point(0, -3);
             this.tableLayoutPanel18.Name = "tableLayoutPanel18";
@@ -1470,15 +1466,16 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel18.Size = new System.Drawing.Size(98, 285);
             this.tableLayoutPanel18.TabIndex = 0;
             // 
-            // button7
+            // AddToCart2_btn
             // 
-            this.button7.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button7.Location = new System.Drawing.Point(4, 215);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(89, 67);
-            this.button7.TabIndex = 1;
-            this.button7.Text = "Add to cart";
-            this.button7.UseVisualStyleBackColor = true;
+            this.AddToCart2_btn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddToCart2_btn.Location = new System.Drawing.Point(3, 180);
+            this.AddToCart2_btn.Name = "AddToCart2_btn";
+            this.AddToCart2_btn.Size = new System.Drawing.Size(89, 67);
+            this.AddToCart2_btn.TabIndex = 1;
+            this.AddToCart2_btn.Text = "Add to cart";
+            this.AddToCart2_btn.UseVisualStyleBackColor = true;
+            this.AddToCart2_btn.Click += new System.EventHandler(this.AddToCart2_btn_Click);
             // 
             // Pricelb2
             // 
@@ -1494,8 +1491,8 @@ namespace ElectronicStoreApp
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 643F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 634F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel25, 2, 0);
@@ -1504,8 +1501,9 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1043, 288);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1043, 276);
             this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // tableLayoutPanel3
             // 
@@ -1516,7 +1514,7 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(293, 282);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(293, 270);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // imageBox1
@@ -1524,7 +1522,7 @@ namespace ElectronicStoreApp
             this.imageBox1.Image = ((System.Drawing.Image)(resources.GetObject("imageBox1.Image")));
             this.imageBox1.Location = new System.Drawing.Point(3, 3);
             this.imageBox1.Name = "imageBox1";
-            this.imageBox1.Size = new System.Drawing.Size(287, 276);
+            this.imageBox1.Size = new System.Drawing.Size(287, 264);
             this.imageBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imageBox1.TabIndex = 0;
             this.imageBox1.TabStop = false;
@@ -1534,7 +1532,7 @@ namespace ElectronicStoreApp
             this.panel2.Controls.Add(this.tableLayoutPanel5);
             this.panel2.Location = new System.Drawing.Point(302, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(637, 282);
+            this.panel2.Size = new System.Drawing.Size(628, 270);
             this.panel2.TabIndex = 1;
             // 
             // tableLayoutPanel5
@@ -1590,31 +1588,32 @@ namespace ElectronicStoreApp
             // 
             this.tableLayoutPanel25.ColumnCount = 1;
             this.tableLayoutPanel25.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel25.Controls.Add(this.button6, 0, 1);
+            this.tableLayoutPanel25.Controls.Add(this.AddToCart1_btn, 0, 1);
             this.tableLayoutPanel25.Controls.Add(this.Pricelb1, 0, 0);
-            this.tableLayoutPanel25.Location = new System.Drawing.Point(945, 3);
+            this.tableLayoutPanel25.Location = new System.Drawing.Point(936, 3);
             this.tableLayoutPanel25.Name = "tableLayoutPanel25";
             this.tableLayoutPanel25.RowCount = 2;
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel25.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel25.Size = new System.Drawing.Size(95, 276);
+            this.tableLayoutPanel25.Size = new System.Drawing.Size(95, 270);
             this.tableLayoutPanel25.TabIndex = 2;
             // 
-            // button6
+            // AddToCart1_btn
             // 
-            this.button6.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button6.Location = new System.Drawing.Point(3, 206);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(89, 67);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "Add to cart";
-            this.button6.UseVisualStyleBackColor = true;
+            this.AddToCart1_btn.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AddToCart1_btn.Location = new System.Drawing.Point(3, 169);
+            this.AddToCart1_btn.Name = "AddToCart1_btn";
+            this.AddToCart1_btn.Size = new System.Drawing.Size(89, 67);
+            this.AddToCart1_btn.TabIndex = 0;
+            this.AddToCart1_btn.Text = "Add to cart";
+            this.AddToCart1_btn.UseVisualStyleBackColor = true;
+            this.AddToCart1_btn.Click += new System.EventHandler(this.AddToCart1_btn_Click);
             // 
             // Pricelb1
             // 
             this.Pricelb1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.Pricelb1.AutoSize = true;
-            this.Pricelb1.Location = new System.Drawing.Point(3, 58);
+            this.Pricelb1.Location = new System.Drawing.Point(3, 57);
             this.Pricelb1.Name = "Pricelb1";
             this.Pricelb1.Size = new System.Drawing.Size(57, 21);
             this.Pricelb1.TabIndex = 0;
@@ -1636,44 +1635,52 @@ namespace ElectronicStoreApp
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel1.Controls.Add(this.ActiveTab_label);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.backward_btn);
+            this.panel1.Controls.Add(this.cart_btn);
             this.panel1.Controls.Add(this.pageNum);
             this.panel1.Controls.Add(this.forward_btn);
-            this.panel1.Controls.Add(this.backward_btn);
-            this.panel1.Location = new System.Drawing.Point(1260, 1);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Location = new System.Drawing.Point(1269, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(95, 887);
+            this.panel1.Size = new System.Drawing.Size(86, 887);
             this.panel1.TabIndex = 11;
             // 
-            // ActiveTab_label
+            // backward_btn
             // 
-            this.ActiveTab_label.AutoSize = true;
-            this.ActiveTab_label.Location = new System.Drawing.Point(3, 423);
-            this.ActiveTab_label.Name = "ActiveTab_label";
-            this.ActiveTab_label.Size = new System.Drawing.Size(91, 21);
-            this.ActiveTab_label.TabIndex = 4;
-            this.ActiveTab_label.Text = "Computer";
+            this.backward_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.backward_btn.BackgroundImage = global::ElectronicStoreApp.Properties.Resources.left_arrow;
+            this.backward_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.backward_btn.FlatAppearance.BorderSize = 0;
+            this.backward_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backward_btn.Location = new System.Drawing.Point(-8, 843);
+            this.backward_btn.Name = "backward_btn";
+            this.backward_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.backward_btn.Size = new System.Drawing.Size(33, 25);
+            this.backward_btn.TabIndex = 0;
+            this.backward_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.backward_btn.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // cart_btn
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button4.BackgroundImage = global::ElectronicStoreApp.Properties.Resources.cart;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(3, 11);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 90);
-            this.button4.TabIndex = 3;
-            this.button4.UseVisualStyleBackColor = false;
+            this.cart_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.cart_btn.BackgroundImage = global::ElectronicStoreApp.Properties.Resources.cart;
+            this.cart_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cart_btn.FlatAppearance.BorderSize = 0;
+            this.cart_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cart_btn.Location = new System.Drawing.Point(0, 37);
+            this.cart_btn.Name = "cart_btn";
+            this.cart_btn.Size = new System.Drawing.Size(83, 77);
+            this.cart_btn.TabIndex = 3;
+            this.cart_btn.UseVisualStyleBackColor = false;
+            this.cart_btn.Click += new System.EventHandler(this.cart_btn_Click);
             // 
             // pageNum
             // 
             this.pageNum.AutoSize = true;
-            this.pageNum.Location = new System.Drawing.Point(40, 802);
+            this.pageNum.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.pageNum.Location = new System.Drawing.Point(28, 845);
             this.pageNum.Name = "pageNum";
-            this.pageNum.Size = new System.Drawing.Size(19, 21);
+            this.pageNum.Size = new System.Drawing.Size(21, 23);
             this.pageNum.TabIndex = 2;
             this.pageNum.Text = "1";
             // 
@@ -1684,53 +1691,26 @@ namespace ElectronicStoreApp
             this.forward_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.forward_btn.FlatAppearance.BorderSize = 0;
             this.forward_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.forward_btn.Location = new System.Drawing.Point(3, 845);
+            this.forward_btn.Location = new System.Drawing.Point(55, 843);
             this.forward_btn.Name = "forward_btn";
             this.forward_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.forward_btn.Size = new System.Drawing.Size(92, 25);
+            this.forward_btn.Size = new System.Drawing.Size(31, 25);
             this.forward_btn.TabIndex = 1;
             this.forward_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.forward_btn.UseVisualStyleBackColor = true;
             this.forward_btn.Click += new System.EventHandler(this.forward_btn_Click);
             // 
-            // backward_btn
+            // ActiveTab_label
             // 
-            this.backward_btn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.backward_btn.BackgroundImage = global::ElectronicStoreApp.Properties.Resources.left_arrow;
-            this.backward_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.backward_btn.FlatAppearance.BorderSize = 0;
-            this.backward_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backward_btn.Location = new System.Drawing.Point(3, 755);
-            this.backward_btn.Name = "backward_btn";
-            this.backward_btn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.backward_btn.Size = new System.Drawing.Size(92, 25);
-            this.backward_btn.TabIndex = 0;
-            this.backward_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.backward_btn.UseVisualStyleBackColor = true;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel6.Location = new System.Drawing.Point(201, 282);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1060, 10);
-            this.panel6.TabIndex = 12;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel7.Location = new System.Drawing.Point(201, 584);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1060, 10);
-            this.panel7.TabIndex = 13;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel8.Location = new System.Drawing.Point(201, 1);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1060, 10);
-            this.panel8.TabIndex = 14;
+            this.ActiveTab_label.AutoSize = true;
+            this.ActiveTab_label.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ActiveTab_label.Font = new System.Drawing.Font("Century Gothic", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ActiveTab_label.ForeColor = System.Drawing.SystemColors.Window;
+            this.ActiveTab_label.Location = new System.Drawing.Point(477, 7);
+            this.ActiveTab_label.Name = "ActiveTab_label";
+            this.ActiveTab_label.Size = new System.Drawing.Size(128, 27);
+            this.ActiveTab_label.TabIndex = 4;
+            this.ActiveTab_label.Text = "Computer";
             // 
             // panel9
             // 
@@ -1743,19 +1723,20 @@ namespace ElectronicStoreApp
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panel10.Location = new System.Drawing.Point(1137, 1);
+            this.panel10.Location = new System.Drawing.Point(1141, 38);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(10, 887);
+            this.panel10.Size = new System.Drawing.Size(10, 850);
             this.panel10.TabIndex = 10;
             // 
-            // label2
+            // welcomeUsername
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 190);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(173, 21);
-            this.label2.TabIndex = 16;
-            this.label2.Text = "Welcome, Username!";
+            this.welcomeUsername.AutoSize = true;
+            this.welcomeUsername.Location = new System.Drawing.Point(12, 38);
+            this.welcomeUsername.Name = "welcomeUsername";
+            this.welcomeUsername.Size = new System.Drawing.Size(173, 21);
+            this.welcomeUsername.TabIndex = 16;
+            this.welcomeUsername.Text = "Welcome, Username!";
+            this.welcomeUsername.Click += new System.EventHandler(this.label2_Click);
             // 
             // tableLayoutPanel19
             // 
@@ -1794,28 +1775,51 @@ namespace ElectronicStoreApp
             this.tableLayoutPanel23.Size = new System.Drawing.Size(200, 100);
             this.tableLayoutPanel23.TabIndex = 0;
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel6.Location = new System.Drawing.Point(9, 279);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1060, 10);
+            this.panel6.TabIndex = 12;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel7.Location = new System.Drawing.Point(7, 561);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1060, 10);
+            this.panel7.TabIndex = 13;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel5.Controls.Add(this.ActiveTab_label);
+            this.panel5.Controls.Add(this.panel7);
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Location = new System.Drawing.Point(191, 1);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1089, 887);
+            this.panel5.TabIndex = 9;
+            // 
             // MainMenu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1354, 888);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.welcomeUsername);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel9);
-            this.Controls.Add(this.panel8);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.MaximumSize = new System.Drawing.Size(1370, 927);
             this.MinimumSize = new System.Drawing.Size(1370, 927);
             this.Name = "MainMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainMenu_Load);
             this.flowLayoutPanel2.ResumeLayout(false);
             this.MyAcountPanel.ResumeLayout(false);
@@ -1883,6 +1887,8 @@ namespace ElectronicStoreApp
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableLayoutPanel19.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1968,7 +1974,6 @@ namespace ElectronicStoreApp
         private Button button19;
         private Label label31;
         private PictureBox pictureBox1;
-        private Panel panel5;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel4;
@@ -1976,7 +1981,7 @@ namespace ElectronicStoreApp
         private Button forward_btn;
         private Button backward_btn;
         private Label pageNum;
-        private Button button4;
+        private Button cart_btn;
         private TableLayoutPanel tableLayoutPanel13;
         private TableLayoutPanel tableLayoutPanel14;
         private PictureBox imageBox3;
@@ -2000,25 +2005,25 @@ namespace ElectronicStoreApp
         private Label RateLabel1;
         private TextBox DesBox2;
         private TextBox DesBox1;
-        private Panel panel6;
-        private Panel panel7;
-        private Panel panel8;
         private Panel panel9;
         private Panel panel10;
         private Label ActiveTab_label;
-        private Label label2;
+        private Label welcomeUsername;
         private TableLayoutPanel tableLayoutPanel24;
-        private Button button9;
+        private Button AddToCart3_btn;
         private Label Pricelb3;
         private Panel panel11;
         private TableLayoutPanel tableLayoutPanel18;
-        private Button button7;
+        private Button AddToCart2_btn;
         private Label Pricelb2;
         private TableLayoutPanel tableLayoutPanel25;
-        private Button button6;
+        private Button AddToCart1_btn;
         private Label Pricelb1;
         private TableLayoutPanel tableLayoutPanel19;
         private TableLayoutPanel tableLayoutPanel22;
         private TableLayoutPanel tableLayoutPanel23;
+        private Panel panel6;
+        private Panel panel7;
+        private Panel panel5;
     }
 }

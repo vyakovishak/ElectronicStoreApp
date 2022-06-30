@@ -46,10 +46,10 @@ namespace ElectronicStoreApp
             DBConnection dbService = new DBConnection();
             string clientUsernameInput = txtBoxUsername.Text;
             string clientPasswordInput = txtBoxPassword.Text;
-            bool quearyStatus =  dbService.Login(clientUsernameInput,  clientPasswordInput);
-           if (quearyStatus)
+            string quearyStatus =  dbService.Login(clientUsernameInput,  clientPasswordInput);
+           if (quearyStatus != "null")
             {
-                clientObj = new Customer(clientUsernameInput, 1, null);
+                clientObj = new Customer(clientUsernameInput, Int32.Parse(quearyStatus), null);
                 this.Hide();
                 MainMenu MM = new MainMenu();
                 MM.Show();

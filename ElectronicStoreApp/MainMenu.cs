@@ -8,8 +8,6 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using System.Web;
-using System.IO;
-using System.Drawing;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace ElectronicStoreApp
@@ -29,10 +27,11 @@ namespace ElectronicStoreApp
         private bool Audio_btn_isCollapsed = true;
         private bool Tablets_btn_isCollapsed = true;
         private bool TVs_btn_isCollapsed = true;
-        private string ActiveCategory;
+        private string ActiveCategory = "Laptops";
         private int ActivePageNum = 1 ;
         private string subCategory = null;
-
+        private List<Dictionary<string, object>> data;
+        private Customer clientObj;
         public void show_hide_menu(Panel mainPanel, Button button, string tabName)
         {
 
@@ -175,15 +174,6 @@ namespace ElectronicStoreApp
         private void MyAccount_btn_Click(object sender, EventArgs e)
         {
            
-            Customer obj = loginWin.clientObj;
-            if (obj.adminRights == 0)
-            {
-                Inventory_btn.Visible = true;
-                CustumersData_btn.Visible = true;
-                MyAcountPanel.MaximumSize = new System.Drawing.Size(182, 261);
-
-            }
-            
             AccounterTimer.Start();
             show_hide_menu(MyAcountPanel, MyAccount_btn, "Account");
         }
@@ -237,15 +227,25 @@ namespace ElectronicStoreApp
         private void Laptop_btn_Click(object sender, EventArgs e)
         {
             ActiveCategory = "Laptops";
-            //DBConnection t = new DBConnection(); 
-            //t.fixData();
-            ActivePageNum = ActivePageNum + 1;
+            ActivePageNum = 1;
             fillPageWithProdocts("Laptops", ActivePageNum, null);
         }
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
+            clientObj = loginWin.clientObj;
+            MessageBox.Show(clientObj.adminRights.ToString());
+            if (clientObj.adminRights == 1)
+            {
+                Inventory_btn.Visible = true;
+                CustumersData_btn.Visible = true;
+                MyAcountPanel.MaximumSize = new Size(182, 261);
 
+            }
+            ActiveCategory = "Laptops";
+            ActiveTab_label.Text = ActiveCategory;
+            welcomeUsername.Text = "Welcome, " + clientObj.username + "!";
+            fillPageWithProdocts("Laptops", ActivePageNum, null);
         }
 
         private void Desktop_btn_Click(object sender, EventArgs e)
@@ -257,9 +257,9 @@ namespace ElectronicStoreApp
 
         private void fillPageWithProdocts(string TableName, int pageNum, string prodoctName=null)
         {
-            pageNum = pageNum;
+            
             DBConnection db = new DBConnection();
-            var data = db.Prodocts(TableName, prodoctName, pageNum);
+            data = db.Prodocts(TableName, prodoctName, pageNum);
             
             List<Label> listOfTittles = new List<Label>();
             listOfTittles.Add(TittleLabel1);
@@ -289,12 +289,12 @@ namespace ElectronicStoreApp
             foreach (var img in listOfImg)
             {
 
-                img.Image = data[img.TabIndex]["bImage"] as Image;
+                img.Image = (Image)data[img.TabIndex]["bImage"] ;
             }
 
             foreach (var price in listOfPriceLb)
             {
-                price.Text = data[price.TabIndex]["regularPrice"].ToString();
+                price.Text = "$"+data[price.TabIndex]["regularPrice"].ToString();
             }
 
             foreach (var box in listOfBoxes)
@@ -304,7 +304,7 @@ namespace ElectronicStoreApp
 
             foreach (var rate in listOfrate)
             {
-                rate.Text = data[rate.TabIndex]["customerReviewCount"].ToString();
+                rate.Text = "Average Review:" + data[rate.TabIndex]["customerReviewAverage"].ToString();
             }
 
             foreach (var lable in listOfTittles)
@@ -333,22 +333,81 @@ namespace ElectronicStoreApp
             ActiveCategory = "Tablets";
             subCategory = "Apple";
             ActivePageNum = 1;
-            fillPageWithProdocts("Tablets", ActivePageNum, "Apple");
+            fillPageWithProdocts("Tablets", ActivePageNum, subCategory);
         }
 
         private void forward_btn_Click(object sender, EventArgs e)
         {
             ActivePageNum = ActivePageNum +1;
-
+            pageNum.Text = ActivePageNum.ToString();
             fillPageWithProdocts(ActiveCategory, ActivePageNum, subCategory);
         }
 
         private void SamsungTV_btn_Click(object sender, EventArgs e)
         {
             ActiveCategory = "TVs";
-            subCategory = "Samsung TV";
+            subCategory = "Samsung";
             ActivePageNum = 1;
-            fillPageWithProdocts("Tablets", ActivePageNum, "Apple");
+            fillPageWithProdocts("TVs", ActivePageNum, subCategory);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void cart_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CartWin CW= new CartWin();
+            CW.Show();
+        }
+
+        private void AddToCart1_btn_Click(object sender, EventArgs e)
+        {
+            DBConnection db = new DBConnection();
+            db.AddToCart(data[0]["sku"].ToString(),clientObj.username);
+        }
+
+        private void AddToCart2_btn_Click(object sender, EventArgs e)
+        {
+            DBConnection db = new DBConnection();
+            db.AddToCart(data[1]["sku"].ToString(), clientObj.username);
+        }
+
+        private void AddToCart3_btn_Click(object sender, EventArgs e)
+        {
+            DBConnection db = new DBConnection();
+            db.AddToCart(data[2]["sku"].ToString(), clientObj.username);
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void SignOut_btn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            loginWin lw = new loginWin();
+            lw.Show();
+        }
+
+        private void Samsung_btn_Click(object sender, EventArgs e)
+        {
+            ActiveCategory = "Tablets";
+            subCategory = "Samsung";
+            ActivePageNum = 1;
+            fillPageWithProdocts("Tablets", ActivePageNum, subCategory);
+        }
+
+        private void SonyTV_btn_Click(object sender, EventArgs e)
+        {
+            ActiveCategory = "TVs";
+            subCategory = "Sony";
+            ActivePageNum = 1;
+            fillPageWithProdocts("TVs", ActivePageNum, subCategory);
         }
     }
 

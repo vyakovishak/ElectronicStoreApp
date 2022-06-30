@@ -69,6 +69,9 @@ namespace ElectronicStoreApp
                 if (queryStatus == true)
                 {
                     MessageBox.Show("Account was created!!");
+                    this.Hide();
+                    loginWin lw = new loginWin();
+                    lw.Show();
                 }
             }
 

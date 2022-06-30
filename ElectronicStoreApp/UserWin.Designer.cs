@@ -32,10 +32,6 @@ namespace ElectronicStoreApp
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserWin));
             this.label5 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.RMW_Password_txtbox = new System.Windows.Forms.TextBox();
-            this.RMW_Username_txtbox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.username_lb = new System.Windows.Forms.Label();
             this.UW_Back_btn = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -61,57 +57,21 @@ namespace ElectronicStoreApp
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Broadway", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Font = new System.Drawing.Font("Broadway", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(61, 338);
+            this.label5.Location = new System.Drawing.Point(63, 275);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 15);
+            this.label5.Size = new System.Drawing.Size(150, 17);
             this.label5.TabIndex = 52;
             this.label5.Text = "Shipping Address";
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.MenuText;
-            this.panel5.Location = new System.Drawing.Point(61, 356);
+            this.panel5.Location = new System.Drawing.Point(67, 295);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(564, 2);
             this.panel5.TabIndex = 51;
-            // 
-            // RMW_Password_txtbox
-            // 
-            this.RMW_Password_txtbox.Location = new System.Drawing.Point(339, 289);
-            this.RMW_Password_txtbox.Name = "RMW_Password_txtbox";
-            this.RMW_Password_txtbox.Size = new System.Drawing.Size(100, 23);
-            this.RMW_Password_txtbox.TabIndex = 50;
-            // 
-            // RMW_Username_txtbox
-            // 
-            this.RMW_Username_txtbox.Location = new System.Drawing.Point(339, 260);
-            this.RMW_Username_txtbox.Name = "RMW_Username_txtbox";
-            this.RMW_Username_txtbox.Size = new System.Drawing.Size(100, 23);
-            this.RMW_Username_txtbox.TabIndex = 49;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Broadway", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(249, 292);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(84, 16);
-            this.label10.TabIndex = 48;
-            this.label10.Text = "Password:";
-            // 
-            // username_lb
-            // 
-            this.username_lb.AutoSize = true;
-            this.username_lb.Font = new System.Drawing.Font("Broadway", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.username_lb.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.username_lb.Location = new System.Drawing.Point(243, 263);
-            this.username_lb.Name = "username_lb";
-            this.username_lb.Size = new System.Drawing.Size(90, 16);
-            this.username_lb.TabIndex = 47;
-            this.username_lb.Text = "Username:";
             // 
             // UW_Back_btn
             // 
@@ -125,6 +85,7 @@ namespace ElectronicStoreApp
             this.UW_Back_btn.TabIndex = 46;
             this.UW_Back_btn.Text = "Back";
             this.UW_Back_btn.UseVisualStyleBackColor = false;
+            this.UW_Back_btn.Click += new System.EventHandler(this.UW_Back_btn_Click);
             // 
             // panel4
             // 
@@ -173,21 +134,21 @@ namespace ElectronicStoreApp
             // 
             // RMW_Zip_txtBox
             // 
-            this.RMW_Zip_txtBox.Location = new System.Drawing.Point(277, 439);
+            this.RMW_Zip_txtBox.Location = new System.Drawing.Point(277, 405);
             this.RMW_Zip_txtBox.Name = "RMW_Zip_txtBox";
             this.RMW_Zip_txtBox.Size = new System.Drawing.Size(157, 23);
             this.RMW_Zip_txtBox.TabIndex = 40;
             // 
             // RMW_State_txtBox
             // 
-            this.RMW_State_txtBox.Location = new System.Drawing.Point(469, 396);
+            this.RMW_State_txtBox.Location = new System.Drawing.Point(474, 362);
             this.RMW_State_txtBox.Name = "RMW_State_txtBox";
             this.RMW_State_txtBox.Size = new System.Drawing.Size(157, 23);
             this.RMW_State_txtBox.TabIndex = 39;
             // 
             // RMW_Address_txtBox
             // 
-            this.RMW_Address_txtBox.Location = new System.Drawing.Point(469, 367);
+            this.RMW_Address_txtBox.Location = new System.Drawing.Point(474, 315);
             this.RMW_Address_txtBox.Name = "RMW_Address_txtBox";
             this.RMW_Address_txtBox.Size = new System.Drawing.Size(157, 23);
             this.RMW_Address_txtBox.TabIndex = 38;
@@ -195,14 +156,14 @@ namespace ElectronicStoreApp
             // RMW_LastName_txtBox
             // 
             this.RMW_LastName_txtBox.BackColor = System.Drawing.Color.White;
-            this.RMW_LastName_txtBox.Location = new System.Drawing.Point(161, 397);
+            this.RMW_LastName_txtBox.Location = new System.Drawing.Point(161, 363);
             this.RMW_LastName_txtBox.Name = "RMW_LastName_txtBox";
             this.RMW_LastName_txtBox.Size = new System.Drawing.Size(157, 23);
             this.RMW_LastName_txtBox.TabIndex = 37;
             // 
             // RMW_FirstName_txtBox
             // 
-            this.RMW_FirstName_txtBox.Location = new System.Drawing.Point(162, 367);
+            this.RMW_FirstName_txtBox.Location = new System.Drawing.Point(161, 315);
             this.RMW_FirstName_txtBox.Name = "RMW_FirstName_txtBox";
             this.RMW_FirstName_txtBox.Size = new System.Drawing.Size(156, 23);
             this.RMW_FirstName_txtBox.TabIndex = 36;
@@ -212,7 +173,7 @@ namespace ElectronicStoreApp
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Broadway", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(235, 442);
+            this.label8.Location = new System.Drawing.Point(235, 408);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 16);
             this.label8.TabIndex = 35;
@@ -223,7 +184,7 @@ namespace ElectronicStoreApp
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Broadway", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(413, 399);
+            this.label7.Location = new System.Drawing.Point(418, 365);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(50, 16);
             this.label7.TabIndex = 34;
@@ -234,7 +195,7 @@ namespace ElectronicStoreApp
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Broadway", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(391, 370);
+            this.label6.Location = new System.Drawing.Point(396, 318);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(72, 16);
             this.label6.TabIndex = 33;
@@ -245,7 +206,7 @@ namespace ElectronicStoreApp
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Broadway", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(63, 399);
+            this.label3.Location = new System.Drawing.Point(63, 365);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 16);
             this.label3.TabIndex = 32;
@@ -256,7 +217,7 @@ namespace ElectronicStoreApp
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Broadway", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(67, 371);
+            this.label2.Location = new System.Drawing.Point(66, 319);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 15);
             this.label2.TabIndex = 31;
@@ -287,7 +248,7 @@ namespace ElectronicStoreApp
             // WelcomeLabel_btn
             // 
             this.WelcomeLabel_btn.AutoSize = true;
-            this.WelcomeLabel_btn.Location = new System.Drawing.Point(307, 209);
+            this.WelcomeLabel_btn.Location = new System.Drawing.Point(307, 216);
             this.WelcomeLabel_btn.Name = "WelcomeLabel_btn";
             this.WelcomeLabel_btn.Size = new System.Drawing.Size(57, 15);
             this.WelcomeLabel_btn.TabIndex = 53;
@@ -298,14 +259,10 @@ namespace ElectronicStoreApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(672, 561);
+            this.ClientSize = new System.Drawing.Size(688, 600);
             this.Controls.Add(this.WelcomeLabel_btn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.RMW_Password_txtbox);
-            this.Controls.Add(this.RMW_Username_txtbox);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.username_lb);
             this.Controls.Add(this.UW_Back_btn);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -328,6 +285,7 @@ namespace ElectronicStoreApp
             this.MaximumSize = new System.Drawing.Size(688, 600);
             this.MinimumSize = new System.Drawing.Size(688, 600);
             this.Name = "UserWin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserWin";
             this.Load += new System.EventHandler(this.UserWin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -340,10 +298,6 @@ namespace ElectronicStoreApp
 
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox RMW_Password_txtbox;
-        private System.Windows.Forms.TextBox RMW_Username_txtbox;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label username_lb;
         private System.Windows.Forms.Button UW_Back_btn;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;

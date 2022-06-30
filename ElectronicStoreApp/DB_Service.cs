@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
@@ -47,9 +48,49 @@ namespace ElectronicStoreApp
             }
         }
 
-        public void UpdateClientInfo()
+        public DataTable getProductDatabase(String nameOfDatabase)
         {
+            bool dbStatus = ConnectToCustumerDatabase();
+            SqlCommand getDatabase = new SqlCommand();
+            getDatabase.CommandText = "SELECT * from dbo."+ nameOfDatabase + "";
+            getDatabase.Connection = conn;
+            myadapter.SelectCommand = getDatabase;
 
+            using (DataTable dt = new DataTable())
+            {
+                myadapter.Fill(dt);
+                return dt;
+                
+            }
+
+        }
+
+        public DataTable getCustomerDatabase(String nameOfDatabase)
+        {
+            bool dbStatus = ConnectToCustumerDatabase();
+            SqlCommand getDatabase = new SqlCommand();
+            getDatabase.CommandText = "SELECT * from dbo." + nameOfDatabase + "";
+            getDatabase.Connection = conn;
+            myadapter.SelectCommand = getDatabase;
+
+            using (DataTable dt = new DataTable())
+            {
+                myadapter.Fill(dt);
+                return dt;
+
+            }
+
+        }
+
+        public void deleteProdoct(String nameOfDatabase)
+        {
+            bool dbStatus = ConnectToCustumerDatabase();
+            SqlCommand delcommand = new SqlCommand();
+            delcommand.Connection = conn;
+            delcommand.CommandText = "Delete dbo." + nameOfDatabase + " where imgId = @imgId";
+            delcommand.Parameters.Add("@ID", SqlDbType.BigInt, 50, "imgId");
+            myadapter.DeleteCommand = delcommand;
+            myadapter.Update(mydt);
         }
 
         public bool Register(string FirstName,string LastName, string Username, string Password, 
@@ -60,8 +101,8 @@ namespace ElectronicStoreApp
             {
                 
                 SqlCommand createUserCD = new SqlCommand();
-                createUserCD.CommandText = "Insert into Customer (Username, Password, FirstName, LastName, Address, State, Zip) " +
-                                           "Values (@UN, @PW, @FN, @LN, @ADD, @S, @Z)";
+                createUserCD.CommandText = "Insert into Customer (Username, Password, FirstName, LastName, Address, State, Zip, AdminRights) " +
+                                           "Values (@UN, @PW, @FN, @LN, @ADD, @S, @Z, @AR)";
                 createUserCD.Connection = conn;
                 createUserCD.Parameters.AddWithValue("@UN", Username);
                 createUserCD.Parameters.AddWithValue("@PW", Password);
@@ -70,6 +111,7 @@ namespace ElectronicStoreApp
                 createUserCD.Parameters.AddWithValue("@ADD", Address);
                 createUserCD.Parameters.AddWithValue("@S", State);
                 createUserCD.Parameters.AddWithValue("@Z", Zip);
+                createUserCD.Parameters.AddWithValue("@AR", 0);
                 createUserCD.ExecuteNonQuery();
                 conn.Close();
                 return true;
@@ -81,55 +123,57 @@ namespace ElectronicStoreApp
             }
         }
         
-        public bool Login(string Username, string Password)
+        public string Login(string Username, string Password)
         {
             bool dbStatus = ConnectToCustumerDatabase();
             if (dbStatus == true)
             {
                 SqlCommand createUserCD = new SqlCommand();
-                createUserCD.CommandText = "SELECT Username, Password FROM dbo.Customer where Username=@UN AND Password=@PW";
+                createUserCD.CommandText = "SELECT Username, Password, AdminRights FROM dbo.Customer where Username=@UN AND Password=@PW";
                 createUserCD.Connection = conn;
                 createUserCD.Parameters.AddWithValue("@UN", Username);
                 createUserCD.Parameters.AddWithValue("@PW",  Password);
                 SqlDataReader oReader = createUserCD.ExecuteReader();
                 if (oReader.Read())
                 {
-                    return true;
+                    return oReader["AdminRights"].ToString();
                 }
                 else
                 {
                     MessageBox.Show("Wrong password or username!");
-                    return false;
+                    return "null";
                 }
             }
             else
             {
                 MessageBox.Show("We havning a issues connecting to database, please try again!!!");
-                return false;
+                return "null";
             }
         }
 
         public List<Dictionary<string, object>> Prodocts(String tabelName, String prodoctName, int pageNum)
         {
+
+
             int oldPage = 0;
             int newPage = 3;
-            if (pageNum > 1 )
+            if (pageNum != 1 )
             {
-                oldPage = newPage;
-                newPage = newPage + 3;
+                oldPage = pageNum*3;
+                newPage = oldPage + 3;
             }
 
             bool dbStatus = ConnectToCustumerDatabase();
             string query;
             if (prodoctName == null)
             {
-                 query = "select [customerReviewAverage], [customerReviewCount]," +
+                 query = "select [sku], [customerReviewAverage]," +
                  "[longDescription], [manufacturer], [name], [regularPrice], [bImage]  from dbo." + tabelName + " WHERE imgId BETWEEN "+ oldPage + " AND "+newPage+"";
             }
             else
             {
-                 query =  "select TOP 3 [customerReviewAverage], [customerReviewCount]," +
-                 "[longDescription], [manufacturer], [name], [regularPrice], [bImage] from dbo." + tabelName + " WHERE imgId BETWEEN " + oldPage + " AND " + newPage + " AND  manufacturer='" + prodoctName + "'";
+                 query =  "select  [sku], [customerReviewAverage]," +
+                 "[longDescription], [manufacturer], [name], [regularPrice], [bImage] from dbo." + tabelName + " WHERE  CONVERT(NVARCHAR,manufacturer)=N'" + prodoctName + "'";
             }
             
             if (dbStatus == true)
@@ -147,14 +191,15 @@ namespace ElectronicStoreApp
                     ms.Write(bytes,0,bytes.Length);
                     Image img = Image.FromStream(ms);
                     var prodoct = new Dictionary<string, object>(){
+                        {"sku", oReader["sku"].ToString()},
                         {"customerReviewAverage", oReader["customerReviewAverage"].ToString()},
-                        {"customerReviewCount", oReader["customerReviewCount"].ToString()},
                         {"longDescription", Base64Decode(oReader["longDescription"].ToString())},
                         {"manufacturer", oReader["manufacturer"].ToString()},
                         {"name", oReader["name"].ToString()},
                         {"regularPrice", oReader["regularPrice"].ToString()},
                         {"bImage", img}
                     };
+                    
                     listOfProdocts.Add(prodoct);
                 }
                 return listOfProdocts;
@@ -164,14 +209,111 @@ namespace ElectronicStoreApp
                 MessageBox.Show("We havning a issues connecting to database, please try again!!!");
                 return null;
             }
-            return null;
+        }
 
+        public string SelectUserCart(string username)
+        {
+            
+            bool dbStatus = ConnectToCustumerDatabase();
+            if (dbStatus != false)
+            {
+
+                string query = "SELECT Cart FROM dbo.Customer WHERE Username='" + username + "'";
+                SqlCommand createUserCD = new SqlCommand();
+                createUserCD.CommandText = query;
+                createUserCD.Connection = conn;
+                
+                using (SqlDataReader oReader = createUserCD.ExecuteReader())
+                {
+                    while (oReader.Read())
+                    {
+                        string userCart = oReader["Cart"].ToString();
+                        return userCart;
+                    }
+                    conn.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("We havning a issues connecting to database, please try again!!!");    
+            }
+            return null;
+        }
+
+        public void AddToCartDatabase(string newCartArray, string username)
+        {
+            bool dbStatus = ConnectToCustumerDatabase();
+            if (dbStatus != false)
+            {
+                SqlCommand insertProdoct = new SqlCommand();
+                insertProdoct.Connection = conn;
+                insertProdoct.CommandText = "UPDATE dbo.Customer SET Cart=@P WHERE Username=@U";
+                insertProdoct.Parameters.AddWithValue("@P", newCartArray);
+                insertProdoct.Parameters.AddWithValue("@U", username);
+                insertProdoct.ExecuteNonQuery();
+            }
         }
 
 
+        public void AddToCart(string productSKU, string username)
+        {
+
+            string userCart =  SelectUserCart(username);
+
+
+            string[] cartArray = userCart.Split(",");
+
+            string newCartArray;
+
+
+            if (cartArray.Length == 0)
+            {
+                newCartArray = productSKU;
+            }
+            else
+            {
+                List<string> list = new List<string>(cartArray.ToList());
+                list.Add(productSKU);
+                cartArray = list.ToArray();
+                newCartArray = String.Join(",", cartArray);
+            }
+            
+            AddToCartDatabase(newCartArray, username);
+
+        }
+
+        public List<Dictionary<string, object>> getUserdata(String username)
+        {
+            bool dbStatus = ConnectToCustumerDatabase();
+            string query;
+
+            List<Dictionary<string, object>> listOfProdocts = new List<Dictionary<string, object>>();
+
+            SqlCommand createUserCD = new SqlCommand();
+            createUserCD.CommandText = "SELECT [Username], [Password], [FirstName], [LastName], [Address], [State], [Zip] from dbo.Customer WHERE Username= @UN ";
+            createUserCD.Connection = conn;
+            createUserCD.Parameters.AddWithValue("@UN", username);
+            SqlDataReader oReader = createUserCD.ExecuteReader();
+            while (oReader.Read())
+            {
+                var prodoct = new Dictionary<string, object>(){
+                        {"Username", oReader["Username"].ToString()},
+                        {"Password", oReader["Password"].ToString()},
+                        {"FirstName", oReader["FirstName"].ToString()},
+                        {"LastName", Base64Decode(oReader["LastName"].ToString())},
+                        {"Address", oReader["Address"].ToString()},
+                        {"State", oReader["State"].ToString()},
+                        {"Zip", oReader["Zip"].ToString()},
+                        
+                    };
+                listOfProdocts.Add(prodoct);
+            }
+            return listOfProdocts;
+        }
+
         public void fixData()
         {
-            byte[] byteArry;
+            
             bool dbStatus = ConnectToCustumerDatabase();
             string query;
             query = "select image from dbo.Laptops";
